@@ -2,6 +2,12 @@ const categoriesContainer = document.getElementById("categories-container");
 const treesContainer = document.getElementById("trees-container");
 const loadingSpinner = document.getElementById("loading-spinner");
 const allTreesBtn = document.getElementById("all-trees-btn");
+const treeDetailsModal = document.getElementById("tree-details-modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalImage = document.getElementById("modalImage");
+const modalCategory = document.getElementById("modalCategory");
+const modalDescription = document.getElementById("modalDescription");
+const modalPrice = document.getElementById("modalPrice");
 
 function showLoading() {
   loadingSpinner.classList.remove("hidden");
@@ -77,11 +83,11 @@ function displayTrees(trees) {
             src="${tree.image}"
             alt="${tree.name}"
             title = "${tree.name}"
-            class = "h-48 w-full object-cover"
+            class = "h-48 w-full object-cover hover:cursor-pointer" onclick="openTreeModal(${tree.id})"
           />
         </figure>
         <div class="card-body">
-           <h2 class="card-title">${tree.name}</h2>
+           <h2 class="card-title cursor-pointer hover:text-success" onclick="openTreeModal(${tree.id})">${tree.name}</h2>
            <p class="line-clamp-2">${tree.description}</p>
            <div class="badge badge-success">${tree.category}</div>
            <div class="card-actions flex justify-between items-center">
@@ -92,6 +98,21 @@ function displayTrees(trees) {
     `;
     treesContainer.appendChild(card);
   });
+}
+
+async function openTreeModal(treeId) {
+  const response = await fetch(
+    `https://openapi.programming-hero.com/api/plant/${treeId}`,
+  );
+  const data = await response.json();
+  const plantDetails = data.plants;
+
+  treeDetailsModal.showModal();
+  modalTitle.textContent = plantDetails.name;
+  modalImage.src = plantDetails.image;
+  modalCategory.textContent = plantDetails.category;
+  modalDescription.textContent = plantDetails.description;
+  modalPrice.textContent = plantDetails.price;
 }
 
 loadCategories();

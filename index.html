@@ -198,11 +198,44 @@
         </div>
 
         <!-- Product details Modal -->
-        <button class="btn" onclick="my_modal_1.showModal()">open modal</button>
-        <dialog id="my_modal_1" class="modal">
+        <dialog id="tree-details-modal" class="modal">
           <div class="modal-box">
-            <h3 class="text-lg font-bold">Hello!</h3>
-            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="font-bold text-2xl text-green-700" id="modalTitle">
+                Tree Details
+              </h3>
+              <button
+                class="btn btn-sm btn-circle btn-ghost"
+                onclick="document.getElementById('tree-details-modal').close()"
+              >
+                X
+              </button>
+            </div>
+
+            <div class="gap-6">
+              <img
+                src=""
+                alt="plant"
+                class="w-full h-[250px]! object-cover rounded-lg mb-12"
+                id="modalImage"
+              />
+
+              <div>
+                <p class="text-sm text-gray-500 mb-2">
+                  <span class="font-bold">Category:</span>
+                  <span id="modalCategory" class="badge badge-primary"></span>
+                </p>
+
+                <p class="text-sm text-gray-600 mb-4">
+                  <span id="modalDescription"></span>
+                </p>
+                <div class="flex items-baseline gap-2 mb-6">
+                  <span class="text-3xl font-bold text-green-600"
+                    >$<span id="modalPrice">0</span></span
+                  >
+                </div>
+              </div>
+            </div>
             <div class="modal-action">
               <form method="dialog">
                 <!-- if there is a button in form, it will close the modal -->
