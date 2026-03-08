@@ -21,7 +21,6 @@
         <div
           class="navbar w-full sm:w-11/12 sm:mx-auto text-white shadow-sm px-2 sm:px-5"
         >
-          <!-- Left side - Logo and mobile menu -->
           <div class="navbar-start">
             <div class="dropdown">
               <div
@@ -45,48 +44,63 @@
                 </svg>
               </div>
               <ul
-                tabindex="-1"
-                class="menu menu-sm dropdown-content bg-base-200 text-black font-medium rounded-box z-1 space-y-1 w-52 p-2 shadow"
+                tabindex="0"
+                class="menu menu-sm dropdown-content bg-base-200 text-black font-medium rounded-box z-[100] space-y-1 w-52 p-2 shadow mt-3"
               >
                 <li>
-                  <a class="hover:bg-green-700 hover:text-white">About</a>
+                  <a href="#home" class="hover:bg-green-700 hover:text-white"
+                    >Home</a
+                  >
                 </li>
                 <li>
-                  <a class="hover:bg-green-700 hover:text-white">Gallery</a>
+                  <a href="#trees" class="hover:bg-green-700 hover:text-white"
+                    >Trees</a
+                  >
                 </li>
-                <li><a class="hover:bg-green-700 hover:text-white">Tree</a></li>
+                <li>
+                  <a href="#cart" class="hover:bg-green-700 hover:text-white"
+                    >Cart</a
+                  >
+                </li>
               </ul>
             </div>
-            <a class="text-4xl font-bold text-white tracking-normal"
+            <a
+              href="#home"
+              class="text-4xl font-bold text-white tracking-normal scroll-link"
               >🌱S<span class="text-warning">H</span>T</a
             >
           </div>
 
-          <!-- Center - Desktop menu -->
           <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1 gap-4 text-[18px] font-medium">
               <li>
-                <a class="text-white hover:bg-green-800 hover:text-white"
-                  >About</a
+                <a
+                  href="#home"
+                  class="text-white hover:bg-green-800 hover:text-white scroll-link"
+                  >Home</a
                 >
               </li>
               <li>
-                <a class="text-white hover:bg-green-800 hover:text-white"
-                  >Gallery</a
+                <a
+                  href="#trees"
+                  class="text-white hover:bg-green-800 hover:text-white scroll-link"
+                  >Trees</a
                 >
               </li>
               <li>
-                <a class="text-white hover:bg-green-800 hover:text-white"
-                  >Tree</a
+                <a
+                  href="#cart"
+                  class="text-white hover:bg-green-800 hover:text-white scroll-link"
+                  >Cart</a
                 >
               </li>
             </ul>
           </div>
 
-          <!-- Right side - CTA button -->
           <div class="navbar-end">
             <a
-              class="btn btn-warning text-green-950 border-0 font-semibold text-base"
+              href="#trees"
+              class="btn btn-warning text-green-950 border-0 font-semibold text-base scroll-link"
             >
               🌳 Plant a tree
             </a>
@@ -94,18 +108,16 @@
         </div>
       </nav>
 
-      <div class="hero bg-green-200">
+      <div id="home" class="hero bg-green-200 scroll-mt-16">
         <div
           class="hero-content w-11/12 mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 p-0 mt-10"
         >
-          <!-- Left leaf -->
           <img
             src="./assets/hero-leaf1.png"
             class="hidden md:block md:col-span-1 h-full w-full"
             alt="leaf decoration"
           />
 
-          <!-- Center content -->
           <div
             class="w-full text-center flex flex-col justify-center items-center md:col-span-2"
           >
@@ -117,13 +129,13 @@
               greener for future generations.
             </p>
             <a
-              class="btn btn-warning text-green-950 border-0 font-semibold text-base mb-10"
+              href="#trees"
+              class="btn btn-warning text-green-950 border-0 font-semibold text-base mb-10 scroll-link"
             >
               Get Involved
             </a>
           </div>
 
-          <!-- Right leaf -->
           <img
             src="./assets/hero-leaf2.png"
             class="hidden md:block md:col-span-1 h-full w-full"
@@ -139,65 +151,76 @@
           Choose your Trees
         </h2>
 
-        <div class="grid grid-cols-12 gap-8">
-          <!-- Categories -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div
-            class="bg-base-200 card card-body shadow-xl shadow-green-950 col-span-3"
+            class="bg-base-200 card card-body shadow-xl shadow-green-950 col-span-1 lg:col-span-3"
           >
             <h2 class="font-bold text-2xl">Categories</h2>
-            <div class="space-y-3 sticky top-5">
-              <button class="btn btn-success w-full" id="all-trees-btn">
-                All Trees
-              </button>
-
-              <!-- categories container -->
-              <div id="categories-container" class="space-y-3"></div>
+            <!-- Fixed: Make sure this container allows horizontal scroll on mobile -->
+            <div
+              class="w-full overflow-x-auto pb-3 lg:pb-0"
+              style="scrollbar-width: none; -ms-overflow-style: none"
+            >
+              <div
+                class="flex flex-row lg:flex-col gap-3 min-w-max lg:min-w-full"
+                id="categories-container"
+              >
+                <!-- Static All Trees button -->
+                <button
+                  class="btn btn-success flex-shrink-0 lg:w-full"
+                  id="all-trees-btn"
+                >
+                  All Trees
+                </button>
+                <!-- Dynamic categories will be added here by JavaScript -->
+              </div>
             </div>
           </div>
 
-          <!-- Trees -->
-          <div class="card card-body shadow-2xl col-span-6">
-            <!-- Trees will rendered -->
+          <div
+            id="trees"
+            class="card card-body shadow-2xl col-span-1 lg:col-span-6 scroll-mt-20"
+          >
             <div
               id="trees-container"
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-h-[800px] overflow-y-auto pr-2"
             >
-              <!-- <div class="card bg-base-100 w-96 shadow-sm">
-                <figure>
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="Shoes"
-                  />
-                </figure>
-                <div class="card-body">
-                  <h2 class="card-title">Card Title</h2>
-                  <p class="line-clamp-2">
-                    A card component has a figure, a body part, and inside body
-                    there are title and actions parts
-                  </p>
-                  <div class="badge badge-success">Success</div>
-                  <div class="card-actions flex justify-between items-center">
-                    <h2 class="font-bold text-2xl text-red-600">$500</h2>
-                    <button class="btn btn-success border-0">Buy Now</button>
-                  </div>
-                </div>
-              </div> -->
-
-              <!-- Loading Spinner -->
               <div
                 id="loading-spinner"
-                class="h-[60vh] hidden flex justify-center items-center"
+                class="h-[60vh] hidden flex justify-center items-center col-span-full"
               >
                 <span class="loading loading-dots loading-xl"></span>
               </div>
             </div>
           </div>
 
-          <!-- Cart -->
-          <div class="card card-body shadow-2xl col-span-3 bg-white"></div>
+          <div
+            id="cart"
+            class="card card-body shadow-2xl col-span-1 lg:col-span-3 bg-white scroll-mt-20"
+          >
+            <h2 class="font-bold text-3xl mb-2">Cart</h2>
+
+            <div class="space-y-4">
+              <div
+                id="cart-container"
+                class="space-y-4 max-h-[400px] overflow-y-auto pr-2"
+              ></div>
+
+              <div id="empty-cart-message" class="text-center py-4">
+                <p>Your cart is Empty</p>
+                <p>Add trees to get started</p>
+              </div>
+
+              <div
+                class="flex justify-between items-center bg-green-50 rounded-lg p-4 my-3 font-bold"
+              >
+                <span>Total:</span>
+                <span id="total-price">$0</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Product details Modal -->
         <dialog id="tree-details-modal" class="modal">
           <div class="modal-box">
             <div class="flex justify-between items-start mb-4">
@@ -238,7 +261,6 @@
             </div>
             <div class="modal-action">
               <form method="dialog">
-                <!-- if there is a button in form, it will close the modal -->
                 <button class="btn">Close</button>
               </form>
             </div>
@@ -246,7 +268,26 @@
         </dialog>
       </div>
     </main>
-    <!-- JS -->
+
     <script src="script.js"></script>
+
+    <script>
+      // Add smooth scrolling to all nav links
+      document.querySelectorAll(".scroll-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const href = this.getAttribute("href");
+          if (href === "#") return;
+
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
